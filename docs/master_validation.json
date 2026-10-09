@@ -1,0 +1,67 @@
+{
+  "validated_on": "2026-10-09",
+  "runtime": "standard master",
+  "comfyui": "0.38.0",
+  "torch": "2.14.0+cu130",
+  "comfy-kitchen": "0.2.36",
+  "gpu": "RTX 4070 12GB",
+  "installation": "setup.bat --prepare-f12, native shared LBH model path added with backup",
+  "dependencies_updated": false,
+  "baseline_022_changed": false,
+  "canonical_bat_changed": false,
+  "registered_nodes": [
+    "H3LBHAutoFFN",
+    "H3LBHF12Loader",
+    "H3LBHImageCondition",
+    "H3LBHPadConditions",
+    "H3LBHQKVReuse",
+    "H3LBHVideoHandoff"
+  ],
+  "saved_gui_workflows": [
+    "H3_LBH_X2_Stream_05s.json",
+    "H3_LBH_X2_Stream_10s.json",
+    "H3_LBH_X2_Stream_14s.json"
+  ],
+  "examples_preflight": [
+    {
+      "seconds": 5,
+      "gui_api_equivalent": true,
+      "combo_inputs_valid": true
+    },
+    {
+      "seconds": 10,
+      "gui_api_equivalent": true,
+      "combo_inputs_valid": true
+    },
+    {
+      "seconds": 14,
+      "gui_api_equivalent": true,
+      "combo_inputs_valid": true
+    }
+  ],
+  "generation": {
+    "requested_seconds": 5,
+    "generation_seconds": 57.506,
+    "frames": 124,
+    "fps": 24,
+    "output_size": [
+      1088,
+      1920
+    ],
+    "audio": {
+      "codec": "aac",
+      "sample_rate": 32000,
+      "channels": 2
+    },
+    "full_av_decode": true,
+    "prompt_id": "27071def-089c-467d-8aae-8cd14220baa0",
+    "video_sha256": "34e6b73637b65a134310cf5739ffa540b37e728d26bdf2c819d4d173e27d00ce",
+    "gui_api_equivalent": true,
+    "changes_to_example": false
+  },
+  "generation_count": 1,
+  "ten_and_fourteen_second_master_generation": "not rerun; workflows registered and schema/GUI-to-API checks passed",
+  "human_quality_review": "pending for this new output",
+  "owned_server_stopped": true,
+  "timing": "Native history execution_start to execution_success, initial model loading included; startup/setup/preparation/media checks excluded"
+}

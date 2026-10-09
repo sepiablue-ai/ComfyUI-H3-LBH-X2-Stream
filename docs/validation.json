@@ -1,0 +1,211 @@
+{
+  "package": "ComfyUI-H3-LBH-X2-Stream",
+  "gui_workflows": [
+    {
+      "api": "examples/api/00_prepare_x2.api.json",
+      "gui": "examples/00_prepare_x2.json",
+      "input_validation": true,
+      "gui_api_roundtrip": true,
+      "generated": false,
+      "executed_via_api_from_gui_data": true
+    },
+    {
+      "api": "examples/api/i2va_lbh_3p1_05s.api.json",
+      "gui": "examples/i2va_lbh_3p1_05s.json",
+      "input_validation": true,
+      "gui_api_roundtrip": true,
+      "generated": true,
+      "executed_via_api_from_gui_data": true
+    },
+    {
+      "api": "examples/api/i2va_lbh_3p1_10s.api.json",
+      "gui": "examples/i2va_lbh_3p1_10s.json",
+      "input_validation": true,
+      "gui_api_roundtrip": true,
+      "generated": true,
+      "executed_via_api_from_gui_data": true
+    },
+    {
+      "api": "examples/api/i2va_lbh_3p1_14s.api.json",
+      "gui": "examples/i2va_lbh_3p1_14s.json",
+      "input_validation": true,
+      "gui_api_roundtrip": true,
+      "generated": true,
+      "executed_via_api_from_gui_data": true
+    }
+  ],
+  "registration": "six package nodes registered without benchmark environment variables",
+  "setup_check": {
+    "status": "passed",
+    "entrypoint": "setup.bat",
+    "dedicated_comfy_python": true,
+    "models_found": 6,
+    "existing_cache_selected_shas_verified": 12,
+    "native_w4a4_gpu_offload_reload_exact": true,
+    "installation_into_active_runtime": false,
+    "dependency_installation": "not executed",
+    "model_downloads": 0,
+    "core_files_changed": false,
+    "fresh_installation": "passed; isolated venv, downloaded pinned X2 dependency, prepared twelve new F12 shards",
+    "sample_copy_fix": "Skip directories in examples/assets"
+  },
+  "full_packaged_generation": "passed 5s, 10s and 14s on fresh ComfyUI 0.39.0; see fresh_install_validation.json",
+  "copied_core_math": "QKV projection and FFN unchanged; F12 overlays use the same native shards; LBH vendor file unchanged",
+  "image_preprocessing": [
+    {
+      "seconds": 5,
+      "size": [
+        384,
+        672
+      ],
+      "bit_exact": true
+    },
+    {
+      "seconds": 5,
+      "size": [
+        544,
+        960
+      ],
+      "bit_exact": true
+    },
+    {
+      "seconds": 10,
+      "size": [
+        384,
+        672
+      ],
+      "bit_exact": true
+    },
+    {
+      "seconds": 10,
+      "size": [
+        544,
+        960
+      ],
+      "bit_exact": true
+    },
+    {
+      "seconds": 14,
+      "size": [
+        384,
+        672
+      ],
+      "bit_exact": true
+    },
+    {
+      "seconds": 14,
+      "size": [
+        544,
+        960
+      ],
+      "bit_exact": true
+    }
+  ],
+  "gui_api_roundtrip": "all four examples preserve every widget and connection",
+  "input_validation": "ComfyUI execution.validate_prompt passed",
+  "extra_video_generations": 3,
+  "validated_on": "2026-10-09",
+  "renoise_equivalence": [
+    {
+      "dtype": "torch.float32",
+      "zero_latent": false,
+      "bit_exact": true
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_latent": true,
+      "bit_exact": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "zero_latent": false,
+      "bit_exact": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "zero_latent": true,
+      "bit_exact": true
+    }
+  ],
+  "computation_ast_matches": {
+    "QKV_projection": true,
+    "FFN_forward": true
+  },
+  "f12_preparation_and_loader": {
+    "blocks": [
+      {
+        "block": 19,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 22,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 23,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 24,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 25,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 26,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 27,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 28,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 29,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 47,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 48,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      },
+      {
+        "block": 49,
+        "matches_measured_shard_tensors": true,
+        "native_save_offload_reload_exact": true
+      }
+    ],
+    "video_generations": 0,
+    "package_loader": "passed actual 50-block model load and mixed-precision layout validation",
+    "prepared_cache_bytes": 926225136
+  },
+  "standard_library_tests": {
+    "command": "python -B -m unittest discover -s tests -v",
+    "passed": 7,
+    "failed": 0,
+    "scope": "QKV budget/key/release and installer repeat/conflict/exclusion guards"
+  },
+  "standalone_import_warning": "Unrelated nodes_replacements expects a running PromptServer; all required nodes and workflows passed without a server.",
+  "distribution_check_scope": "Earlier component checks plus a fresh setup and full distributed examples; current evidence is in fresh_install_validation.json.",
+  "extra_video_generation_scope": "Exactly the three distributed video examples explicitly requested for this fresh installation check",
+  "master_installation": "installed, GUI workflows registered, 5s video passed; see master_validation.json"
+}

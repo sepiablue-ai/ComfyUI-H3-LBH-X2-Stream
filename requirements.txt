@@ -1,0 +1,4 @@
+# Use the Python belonging to ComfyUI. CUDA/PyTorch are supplied by ComfyUI.
+einops>=0.8.0
+safetensors>=0.7.0
+# X2 Stream supplies av and comfy-kitchen through its own requirements.

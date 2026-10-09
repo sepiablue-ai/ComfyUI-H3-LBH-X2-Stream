@@ -1,0 +1,11 @@
+[project]
+name = "comfyui-h3-lbh-x2-stream"
+version = "0.1.0"
+description = "MiniMax H3 LBH 3+1 generation with F12, bounded QKV reuse and X2 streaming output"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+dependencies = ["einops>=0.8.0", "safetensors>=0.7.0"]
+
+[tool.comfy]
+DisplayName = "H3 LBH X2 Stream"

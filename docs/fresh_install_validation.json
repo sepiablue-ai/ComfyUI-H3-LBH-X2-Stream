@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "validated_on": "2026-10-09",
+  "comfyui_version": "0.39.0",
+  "comfyui_commit": "926d828e37c6f369a3cf3582887da470f7dab515",
+  "python": "3.13.13",
+  "packages": {
+    "torch": "2.14.0+cu130",
+    "comfy-kitchen": "0.2.37",
+    "comfy-aimdo": "0.5.6",
+    "comfyui-frontend-package": "1.55.14"
+  },
+  "gpu": "NVIDIA GeForce RTX 4070 12GB",
+  "windows_user_matches_standard_runtime": true,
+  "environment": "Fresh ComfyUI/custom_nodes and a separate venv. Existing master site-packages referenced by .pth; five newly required versions installed only in the validation venv. Existing model weights shared through native extra_model_paths.yaml.",
+  "setup": {
+    "entrypoint": "setup.bat",
+    "arguments": [
+      "--install-dependencies",
+      "--prepare-f12",
+      "--gpu-check"
+    ],
+    "status": "passed after sample-directory guard fix",
+    "fresh_f12_shards": 12,
+    "fresh_f12_bytes": 926225136,
+    "x2_dependency_commit": "eb148a3d0f91a273668bbe027bfcbafb85f2c5e8",
+    "model_downloads": 0,
+    "standard_python_packages_changed": false,
+    "fix": "Copy only files from examples/assets; ignore native-created empty 3d directory."
+  },
+  "submission": "GUI example data reconstructed through current /object_info, checked equal to its bundled API graph, then submitted via /prompt with GUI metadata. No browser-button/drag-and-drop test.",
+  "x2_preparation": {
+    "status": "passed",
+    "execution_seconds": 12.086,
+    "writes_to_new_comfy_models": true,
+    "converted_bytes": 2834835436
+  },
+  "videos": [
+    {
+      "requested_seconds": 5,
+      "generation_seconds": 58.802,
+      "frames": 124,
+      "fps": 24,
+      "output_size": [
+        1088,
+        1920
+      ],
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 32000,
+        "channels": 2
+      },
+      "full_av_decode": true,
+      "prompt_id": "40edd9cd-0aa4-42a6-99ac-e2b9c9245230",
+      "video_sha256": "15a7ce8c1e70b468511c4e05b0173d3e752993b0bcd9600a08bdde273cfd2e52",
+      "gui_api_equivalent": true,
+      "changes_to_example": false,
+      "model_cache": "first video in a new process"
+    },
+    {
+      "requested_seconds": 10,
+      "generation_seconds": 86.289,
+      "frames": 243,
+      "fps": 24,
+      "output_size": [
+        1088,
+        1920
+      ],
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 32000,
+        "channels": 2
+      },
+      "full_av_decode": true,
+      "prompt_id": "003d5ca8-d10a-4b67-a8e2-0c7b5d698e5f",
+      "video_sha256": "8ccf8c30f3f5fd3fe99e3b85e3ed3c2694078ac96f5ab470c60b5dafbad97449",
+      "gui_api_equivalent": true,
+      "changes_to_example": false,
+      "model_cache": "first video in a new process"
+    },
+    {
+      "requested_seconds": 14,
+      "generation_seconds": 112.983,
+      "frames": 345,
+      "fps": 24,
+      "output_size": [
+        1088,
+        1920
+      ],
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 32000,
+        "channels": 2
+      },
+      "full_av_decode": true,
+      "prompt_id": "b19bda05-046e-4c4b-9cd4-1da9a1ff7fbf",
+      "video_sha256": "bb32374398714ac77061653ad1a04ba8425a4c8cf7f537393de680b1e1d43048",
+      "gui_api_equivalent": true,
+      "changes_to_example": false,
+      "model_cache": "same process following the different 10s image/prompt"
+    }
+  ],
+  "completed_prompt_count": 4,
+  "duplicate_generations": 0,
+  "human_quality_review": "pending for these new outputs",
+  "server_stopped": true,
+  "timing": "Native history execution_start to execution_success; includes loading/conditioning/sampling/LBH/audio/X2/save, excludes clone/setup/F12 preparation/X2 conversion/server startup/media verification. Each duration measured once."
+}

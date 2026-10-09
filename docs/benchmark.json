@@ -1,0 +1,83 @@
+{
+  "device": "RTX 4070 12GB",
+  "platform": "Windows",
+  "preset": "LBH 3+1",
+  "low_size": [
+    384,
+    672
+  ],
+  "high_size": [
+    544,
+    960
+  ],
+  "output_size": [
+    1088,
+    1920
+  ],
+  "audio_steps": 4,
+  "seed": 43,
+  "source_runs": [
+    {
+      "requested_seconds": 10,
+      "frames": 243,
+      "actual_seconds": 10.125,
+      "seed": 43,
+      "lbh_3p1_seconds": 85.393,
+      "reference_022_seconds": 106.879,
+      "source_image_sha256": "850fd8d1371bae530bbbd6984bb21a0f0b5f0d292f3e3870302529b22208b92f",
+      "packaged_asset": "h3_lbh_10s.png",
+      "prompt_sha256": "b9e90c83fb141ecec48b280fd16056871f0ff5549cf7fc92e14b98d790c3c979",
+      "measured_workflow_sha256": "5d7a4959c43acc87f1189a9ab69e659e65d5f0acacf5ae38277f405c13c8b923",
+      "measured_video_sha256": "9b01da253da1258bc8a5e7f540201fe6bb42d7eb3482c8f962558ccfb1bafa80",
+      "full_av_decode": true,
+      "packaged_full_generation": "not rerun",
+      "packaged_asset_sha256": "54e52693cc89ac640e552abbffeb9a6d0f331f07291c62a9f3d713516d18f765"
+    },
+    {
+      "requested_seconds": 14,
+      "frames": 345,
+      "actual_seconds": 14.375,
+      "seed": 43,
+      "lbh_3p1_seconds": 116.594,
+      "reference_022_seconds": 154.834,
+      "source_image_sha256": "28772a67d25596d615dae31e4616b505756570d05ea4e0875280fad1ed3ea343",
+      "packaged_asset": "h3_lbh_14s.png",
+      "prompt_sha256": "94d7303b6425e1e5c7ed6dd655507abf0d08e80915516494de51afd0dc726e67",
+      "measured_workflow_sha256": "c6e3921d1987f052ff676d486c61e50c346711b0e1dbc2e9da3ae056af3ebab6",
+      "measured_video_sha256": "b8e77cb883ec5f72dff2a36783726818d10f6a7152288599d43b5a4777bea882",
+      "full_av_decode": true,
+      "packaged_full_generation": "not rerun",
+      "packaged_asset_sha256": "a951f36c1b5a4fadc7f0768a6257db3f93d91509ed6df614a7e87de644c0fd27"
+    }
+  ],
+  "timing": "Native ComfyUI history, initial model loading included, startup/uploads/validation excluded; one run per method and duration.",
+  "packaged_workflow_timing": "Measured on fresh ComfyUI 0.39.0; different process/cache conditions from historical 0.38.0 comparisons. See fresh_install_validation.json.",
+  "five_second_3p1_generation": "Packaged 5s example completed on 2026-10-09; the earlier historical experiment did not generate 5s 3+1.",
+  "human_review": "3+1 visual/audio review positive, then selected by the user for this formal repository on 2026-10-09",
+  "rejected": [
+    "272x480 all-low + RGB upscale",
+    "384x672 LBH 4+0 without high-resolution H3"
+  ],
+  "lbh_weights": {
+    "bytes": 690592672,
+    "sha256": "043e5a48e161610ef6c3ea974645220354d06fa618abca15f76d084812eb55c2",
+    "tensor_count": 322,
+    "dtypes": [
+      "F16"
+    ],
+    "filename": "minimax_h3_latent_upscaler_3d_fp16.safetensors",
+    "current_download_alias_identity": "not verified"
+  },
+  "source_model": {
+    "filename": "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+    "sha256": "4262e4e9963c553fa00016bbe83961407a4fc0a888be95fd836c8d4f2304e48b"
+  },
+  "environment": {
+    "ComfyUI": "0.38.0",
+    "Python": "3.13.13",
+    "torch": "2.14.0+cu130",
+    "comfy-kitchen": "0.2.36",
+    "system_ram_gib": 48
+  },
+  "sample_preprocessing": "Lossless PIL-decoded PNGs from the original WebP; all six resized inputs are bit-exact to the measured PNGs."
+}

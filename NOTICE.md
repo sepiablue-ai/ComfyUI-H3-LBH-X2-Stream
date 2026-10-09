@@ -1,0 +1,13 @@
+# Attribution and model terms
+
+Package code is GPL-3.0; see LICENSE. No model weights, converted shards or generated videos are distributed.
+
+- [ComfyUI-H3-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-X2-Stream), by sepiablue-ai, is the separate GPL-3.0 X2 conversion and NVENC dependency. The reproducible setup reference is commit eb148a3d0f91a273668bbe027bfcbafb85f2c5e8. Its native output-buffer and decoder blending paths are retained.
+- vendor/lbh_3d.py is the unchanged LBH-123-AI Minimax H3 3D upscaler implementation used in the accepted experiments. Source: [LBH-123-AI/Comfyui_Minimax_h3_latent_Upscaler](https://github.com/LBH-123-AI/Comfyui_Minimax_h3_latent_Upscaler), nodes/minimax_h3_latent_upscaler_3d.py. SHA-256: 9fb4e2ec679f7ba9cc8e10685053d2080ff2891cc0f8913ec9a2660614441879. Its MIT notice is preserved verbatim in vendor/LBH_LICENSE.txt. Only this pinned 3D implementation is registered through the package's handoff adapter.
+- F12 preparation and overlay loading adapt sepiablue-ai's ComfyUI-MiniMax-H3-W4A4-VSA native cache/convert implementation (GPL-3.0). This package prepares only twelve FC1 shards, accepts the existing native 50-shard format, and does not use its Gate or VSA implementation.
+- ffn.py adapts [kijai/ComfyUI-KJNodes](https://github.com/kijai/ComfyUI-KJNodes) MiniMaxChunkFeedForward (GPL-3.0), through the author's validated automatic 1/8 experiment. Computation uses ComfyUI's native SwiGLU op.
+- QKV reuse calls [ComfyUI](https://github.com/Comfy-Org/ComfyUI)'s native SLA unchanged through ModelPatcher callbacks. The small CONST handoff implements the same process_latent_in/out, noise_scaling and inverse_noise_scaling sequence as the validated helper, informed by [TripleHeadedMonkey/ComfyUI-MiniMaxH3_LatentUpscaler](https://github.com/TripleHeadedMonkey/ComfyUI-MiniMaxH3_LatentUpscaler). Its broad upscaler utilities and excluded FILM checkpoint are not bundled.
+- Native quantization and INT4 execution use [Comfy Kitchen](https://github.com/Comfy-Org/comfy-kitchen).
+- The MATLOW fused model and Comfy-Org H3 weights identify their license as MiniMax H3 Community License on their model pages. X2 VAE and LBH weights retain the terms on their respective distribution pages. This code license does not replace model or derived-weight terms. [X2 source](https://huggingface.co/speach1sdef178/MiniMax-H3-X2-Detail-VAE), [LBH source](https://huggingface.co/LBH-123-AI/Minimax_h3_latent_Upscaler).
+
+Historical settings and measurements are in docs/benchmark.json. No old benchmark checkout or private source folder is required at runtime.
