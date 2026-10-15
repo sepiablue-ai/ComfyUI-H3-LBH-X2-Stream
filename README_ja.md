@@ -17,6 +17,14 @@
 
 > 作者：かみもと（Kamimoto）｜検証結果の速報は **[X（@sep_is_heim）](https://x.com/sep_is_heim)**、解説記事は **[note](https://note.com/sepiablue)**（[記事INDEX](https://note.com/sepiablue/n/n8e612c619a3e)）で公開しています。
 
+## サンプル比較 — 14秒・ギター弾き語り
+
+左が従来（[ComfyUI-H3-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-X2-Stream)同梱の4step FL2VAワークフロー、172.1秒）、右がLBH 3+1（音声改善なし、123.9秒）です。前半は左の音声、後半は同じ映像を最初から流して右の音声を再生します。再生中の側をオレンジ枠で示しています。
+
+https://github.com/user-attachments/assets/87b921fe-aed9-4adf-ad06-f534e5da5245
+
+同じ画像・プロンプト・seed43で、640×928で生成し（LBHは448×640→640×928）、1280×1856で保存しています。2026年10月14日に別々のセッションで各1回計測しました。声の金属的な響きを抑えたい場合は、[ComfyUI-H3-AudioFirst-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-AudioFirst-X2-Stream)の高速版（同じ動画で137.9秒）を使えます。
+
 ## 生成の流れ
 
 MiniMax H3を384×672で3step生成し、LBHで映像latentを544×960へ拡大、最後の1stepを高解像度のH3で仕上げます。X2 VAEと非同期NVENC保存で1088×1920を出力します。音声は途中latentを引き継ぎ、合計4step生成します。

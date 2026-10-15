@@ -17,6 +17,14 @@
 
 > Author: Kamimoto (かみもと) | Quick results on **[X (@sep_is_heim)](https://x.com/sep_is_heim)**, write-ups (Japanese) on **[note](https://note.com/sepiablue)** ([article index](https://note.com/sepiablue/n/n8e612c619a3e)).
 
+## Sample comparison — 14 s, singing with guitar
+
+Left: before (the 4-step FL2VA workflow bundled with [ComfyUI-H3-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-X2-Stream), 172.1 s). Right: LBH 3+1 (no audio fix, 123.9 s). The first half plays the left audio; the same picture then plays again from the start with the right audio. The orange frame marks the side being heard.
+
+https://github.com/user-attachments/assets/87b921fe-aed9-4adf-ad06-f534e5da5245
+
+Same image, prompt and seed 43, generated at 640 × 928 (LBH: 448 × 640 → 640 × 928) and saved at 1280 × 1856. Each was measured once in separate sessions on 2026-10-14. For a less metallic voice, use the fast variant of [ComfyUI-H3-AudioFirst-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-AudioFirst-X2-Stream) (137.9 s for the same video).
+
 ## How it works
 
 Generate three MiniMax H3 steps at **384×672**, upscale the clean video latent once with LBH, finish the fourth H3 step at **544×960**, then use X2 Stream to save **1088×1920** video with audio. Audio continues through all four original steps; it is not frozen at the resolution change.
