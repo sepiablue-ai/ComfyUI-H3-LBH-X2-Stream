@@ -43,6 +43,16 @@ Generate three MiniMax H3 steps at **384×672**, upscale the clean video latent 
 
 FC2/QKV/OutProj weights remain INT8. No VSA Gate, benchmark environment variables, forward-count limits, model downloads or ComfyUI core edits. The remaining original sigma schedule is retained; there is no RALU sigma correction.
 
+## Install with ComfyUI-Manager (easiest)
+
+1. In ComfyUI-Manager, search for and install **H3 LBH X2 Stream** ([h3-lbh-x2-stream](https://registry.comfy.org/publishers/sepiablue-ai/nodes/h3-lbh-x2-stream)) and **H3 X2 Stream** ([h3-x2-stream](https://registry.comfy.org/publishers/sepiablue-ai/nodes/h3-x2-stream)), which the examples use for saving. The Manager built into recent ComfyUI is enabled with `--enable-manager`.
+2. Restart ComfyUI.
+3. Copy the three images from [`examples/assets`](examples/assets) into `ComfyUI/input/`. Manager does not copy sample inputs.
+
+Manager installs the code and Python requirements; models are still placed by hand (see [Models and generation](#models-and-generation)). Prepare the X2 INT8 decoder once with [00_prepare_x2.json](examples/00_prepare_x2.json); the F12 Loader prepares its cache (about 0.93 GB) on first use. Tested on 2026-10-15 with ComfyUI 0.38.0 and ComfyUI-Manager 4.2.2: install without warnings, restart, all nodes registered and the examples loaded. Video generation was not part of that test.
+
+Use one installation method only. Manager installs into `custom_nodes/h3-lbh-x2-stream` and `custom_nodes/h3-x2-stream`, while `setup.bat` looks for `custom_nodes/ComfyUI-H3-X2-Stream`. If X2 Stream came from Manager, do not run `setup.bat --install-dependencies`; it would add a second copy and register the same nodes twice.
+
 ## Requirements and setup
 
 Validated development environment: Windows, RTX 4070 12GB, ComfyUI 0.38.0, Python 3.13.13, PyTorch 2.14.0+cu130, comfy-kitchen 0.2.36, approximately 48 GiB system RAM. Other hardware, operating systems and models require their own validation.
