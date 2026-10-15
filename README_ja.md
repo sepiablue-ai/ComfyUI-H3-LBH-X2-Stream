@@ -2,11 +2,24 @@
 
 [English](README.md) | 日本語
 
-MiniMax H3を384×672で3step生成し、LBHで映像latentを544×960へ拡大、最後の1stepを高解像度のH3で仕上げるComfyUIノードです。X2 VAEと非同期NVENC保存で1088×1920を出力します。音声は途中latentを引き継ぎ、合計4step生成します。
+**MiniMax H3の4stepのうち3stepを低解像度で生成し、LBHで拡大して最後の1stepだけ高解像度で仕上げるComfyUIノードです。1088×1920・音声付き動画の生成時間を約2〜2.5割短縮します。**
 
-022を土台にした、画質・音質の確認を経て選ばれた3+1構成をまとめています。全4stepを低解像度で完了してから拡大する4+0は、画質・音質NGのため含めていません。
+| RTX 4070 12GB | 従来（X2 Stream 4step） | LBH 3+1 | 短縮 |
+|---|---:|---:|---:|
+| 10秒動画 | 106.9秒（1分46.9秒） | **85.4秒（1分25.4秒）** | −21.5秒（−20%） |
+| 14秒動画 | 154.8秒（2分34.8秒） | **116.6秒（1分56.6秒）** | −38.2秒（−25%） |
+
+- **配布版でも同じ速さ**：新規ComfyUIへ導入した確認では、5秒58.8秒、10秒86.3秒、14秒113.0秒で生成できました。
+- **品質を確認した構成だけを同梱**：全4stepを低解像度で生成してから拡大する4+0は、画質・音質NGで不採用にしています。
+- **音声をさらに良くしたい場合**：この構成に音声先行パスを組み合わせた[ComfyUI-H3-AudioFirst-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-AudioFirst-X2-Stream)の高速版があります（約12秒追加、それでも従来より速い）。
+
+「従来」は[ComfyUI-H3-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-X2-Stream)同梱の4step FL2VAワークフロー（544×960で4step、SLA 5%）です。表は開発用ワークフローでの各1回の実測で、実行日の揺れを含みます。条件の詳細は[実測と検証範囲](#実測と検証範囲)にあります。
+
+> 作者：かみもと（Kamimoto）｜検証結果の速報は **[X（@sep_is_heim）](https://x.com/sep_is_heim)**、解説記事は **[note](https://note.com/sepiablue)**（[記事INDEX](https://note.com/sepiablue/n/n8e612c619a3e)）で公開しています。
 
 ## 生成の流れ
+
+MiniMax H3を384×672で3step生成し、LBHで映像latentを544×960へ拡大、最後の1stepを高解像度のH3で仕上げます。X2 VAEと非同期NVENC保存で1088×1920を出力します。音声は途中latentを引き継ぎ、合計4step生成します。
 
 | 工程 | 映像 | 音声 |
 |---|---|---|
@@ -93,12 +106,15 @@ LBHの現行配布名`minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors`も
 
 ## 実測と検証範囲
 
-| 設定 | 022 | LBH3+1 | 短縮 |
+| 設定 | 従来（X2 Stream 4step） | LBH 3+1 | 短縮 |
 |---|---:|---:|---:|
 | 10秒 | 106.879秒 | 85.393秒 | 21.486秒 |
 | 14秒 | 154.834秒 | 116.594秒 | 38.240秒 |
 
 これは正式版を作る前の検証用ワークフローの実測です。初回モデルロード、条件付け、sampler、LBH、音声、X2と保存を含み、サーバー起動・アップロード・検査・一度だけの重み準備を除きます。各1回で、実行日の揺れを含みます。当時の5秒3+1は未生成でした。配布版の5秒は、その後の新規導入検証で生成を確認しています。
+
+<details>
+<summary>検証の詳細（配布版の検査・テスト・新規導入）</summary>
 
 配布版では実験用監査を削除し、画像の準備とF12の準備機能を通常利用向けにまとめています。配布版でも新規ComfyUI 0.39.0にsetupし、5・10・14秒exampleの生成を確認しました。[検証記録](docs/validation.json)と[実測記録](docs/benchmark.json)で、元の実測と配布版の検査を区別しています。
 
@@ -110,9 +126,9 @@ LBHの現行配布名`minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors`も
 "C:\ComfyUI\.venv\Scripts\python.exe" -B -m unittest discover -s tests -v
 ```
 
-既存masterのComfyUI 0.38.0にもsetup.batで導入し、5秒exampleを57.506秒で生成、全映像・音声デコード検査を通過しました。依存更新・022変更なし。5・10・14秒はGUIのワークフロー一覧へ登録済みです。[master検証記録](docs/master_validation.json)。
+既存masterのComfyUI 0.38.0にもsetup.batで導入し、5秒exampleを57.506秒で生成、全映像・音声デコード検査を通過しました。依存関係と従来ワークフローは変更していません。5・10・14秒はGUIのワークフロー一覧へ登録済みです。[master検証記録](docs/master_validation.json)。
 
-## 新規導入での生成確認
+### 新規導入での生成確認
 
 ComfyUI 0.39.0を新規cloneし、専用venvでsetup.batを実行しました。X2準備用と5・10・14秒exampleをそのまま実行し、すべて成功しました。動画3本は1088×1920・24fps、AAC 32kHzステレオで全デコード検査を通過しています。
 
@@ -123,6 +139,22 @@ ComfyUI 0.39.0を新規cloneし、専用venvでsetup.batを実行しました。
 | 14秒 | 112.983秒 | 10秒の後、同一プロセスで別画像・別プロンプト |
 
 初回だけのF12準備とX2変換、サーバー起動、出力検査は動画生成時間に含めません。既存PyTorch等は標準venvから参照し、0.39.0が新たに要求する5パッケージだけを検証用venvへ導入しました。標準venvは更新していません。これは依存まで完全に空の環境から導入した試験ではありません。GUIのデータとAPI版の一致を確認してAPI経由で実行しており、ブラウザーでのドラッグ操作・Queueボタンは未検査です。今回出力の主観的な画質・音質は未評価です。[詳細記録](docs/fresh_install_validation.json)。
+
+</details>
+
+## 作者・関連リポジトリ
+
+かみもと（Kamimoto）です。RTX 4070 12GBで、MiniMax H3とComfyUIの高速化・省VRAM化を実測しながら公開しています。
+
+- X：[@sep_is_heim](https://x.com/sep_is_heim) — step数・秒数・短縮率などの検証速報
+- note：[かみもと｜ローカルAI生成](https://note.com/sepiablue) — 導入方法と実測の解説記事（[記事INDEX](https://note.com/sepiablue/n/n8e612c619a3e)）
+- [さやかベンチマーク](https://sayakabenchmark.pages.dev/) — H3ワークフローの速度・画質比較
+
+| リポジトリ | 内容 |
+|---|---|
+| [ComfyUI-H3-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-X2-Stream) | X2 VAEのINT8化と非同期NVENC保存。本repoの出力と「従来」構成の元 |
+| [ComfyUI-H3-AudioFirst-X2-Stream](https://github.com/sepiablue-ai/ComfyUI-H3-AudioFirst-X2-Stream) | 音声を先に作って固定し、金属的な響きを抑える2パス生成。本構成との組み合わせ（高速版）あり |
+| [ComfyUI-MiniMax-H3-W4A4-VSA](https://github.com/sepiablue-ai/ComfyUI-MiniMax-H3-W4A4-VSA) | Ref2VAの高速化（FC1 W4A4、Streaming VSA） |
 
 ## ライセンス
 
