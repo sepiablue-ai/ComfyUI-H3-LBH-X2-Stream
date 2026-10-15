@@ -1,6 +1,6 @@
 [project]
 name = "h3-lbh-x2-stream"
-version = "0.1.1"
+version = "0.1.2"
 description = "Faster MiniMax H3 video for ComfyUI: 3 low-resolution steps, LBH latent upscale, then 1 high-resolution step. 14 s 1088x1920 video with audio: 154.8 s -> 116.6 s (-25%) on an RTX 4070 12GB."
 readme = "README.md"
 license = {file = "LICENSE"}
