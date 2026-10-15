@@ -1,11 +1,22 @@
 [project]
-name = "comfyui-h3-lbh-x2-stream"
-version = "0.1.0"
-description = "MiniMax H3 LBH 3+1 generation with F12, bounded QKV reuse and X2 streaming output"
+name = "h3-lbh-x2-stream"
+version = "0.1.1"
+description = "Faster MiniMax H3 video for ComfyUI: 3 low-resolution steps, LBH latent upscale, then 1 high-resolution step. 14 s 1088x1920 video with audio: 154.8 s -> 116.6 s (-25%) on an RTX 4070 12GB."
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.11"
 dependencies = ["einops>=0.8.0", "safetensors>=0.7.0"]
+classifiers = [
+    "Operating System :: Microsoft :: Windows",
+    "Environment :: GPU :: NVIDIA CUDA",
+]
+
+[project.urls]
+Repository = "https://github.com/sepiablue-ai/ComfyUI-H3-LBH-X2-Stream"
+Documentation = "https://github.com/sepiablue-ai/ComfyUI-H3-LBH-X2-Stream#readme"
+"Bug Tracker" = "https://github.com/sepiablue-ai/ComfyUI-H3-LBH-X2-Stream/issues"
 
 [tool.comfy]
+PublisherId = "sepiablue-ai"
 DisplayName = "H3 LBH X2 Stream"
+requires-comfyui = ">=0.38.0"
